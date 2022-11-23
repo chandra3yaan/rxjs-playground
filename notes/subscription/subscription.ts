@@ -1,6 +1,7 @@
 /**
  * The Subscription is what executes the Observable.
  * We can say that it runs the callback inside of the Observable and passes our Observer object to it.
+ * Subscribing to an Observable is analogous to calling a Function.
  * A Subscription is an object that represents a disposable resource, usually the execution of an Observable.
  * A Subscription has one important method, unsubscribe, that takes no argument and just disposes the resource held by the subscription.
  *      → A Subscription essentially just has an unsubscribe() function to release resources or cancel Observable executions.
