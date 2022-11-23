@@ -26,7 +26,14 @@ import { Observable } from "rxjs";
  *                  next*(error|complete)?
  *      2. error
  *                  We may want to provide some error handling logic if something goes wrong.
+ *                  Whenever something unexpected happens or the Observable wants to signal that its data source failed,
+ *                  the error notification is emitted.
+ *                  and the Subscription will end automatically.
  *      3. complete
+ *                  If we would like to signal that the Observable's data source has finished and there are no more values to be emitted,
+ *                  we would use the complete notification.
+ *                  After a complete notification gets emitted, it means that the Observable has finished its work
+ *                  and the Subscription will end automatically.
  */
 
 /*
