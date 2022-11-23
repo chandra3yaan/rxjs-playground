@@ -6,3 +6,7 @@
 4. Open the Console/DevTools in your browser to see the `console.log`s.
 5. Keep modifying the `src/index.html` and `src/index.ts` files to adjust the code you want to run. **Saving these files will automatically reload the page.**
 6. Enjoy!
+
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/SubscriptionLifecycle.png"
+alt="lifecycle">
