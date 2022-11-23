@@ -9,6 +9,10 @@
  */
 
 /**
+ * If we do not put some thought into how we manage and clean up the subscriptions we create, we can cause an array of problems in our applications.
+ */
+
+/**
  * To start a new Subscription, we simply call the subscribe method on the Observable
  *  ... and we can pass the Observer as an argument.
  */

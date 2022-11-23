@@ -28,6 +28,8 @@ storeDataOnServerError("anything").subscribe({
 // end -- the codes of the first section
 */
 
+
+/*
 // start -- the codes of the second section
 const document$ = new Observable<number>((subscriber) => {
   console.log('Observable executed!');
@@ -56,3 +58,27 @@ document$.subscribe({
 });
 console.log('just after subscribe');
 // end -- the codes of the second section
+*/
+
+
+// start -- the codes of the second section
+const observable$ = new Observable<string>(subscriber => {
+  subscriber.next('Tristina');
+  subscriber.next('Kaisa');
+  subscriber.next('Ashe');
+  setTimeout(() => subscriber.next('Xayah'), 1000);
+  setTimeout(() => subscriber.next('Draven'), 1000);
+  setTimeout(() => subscriber.next('Garen'), 1500);
+  setTimeout(() => subscriber.next('Darius'), 4000);
+  setTimeout(() => subscriber.next('Ornn'), 10000);
+});
+
+console.log('Subscription 1 starts');
+observable$.subscribe(value => console.log('Subscription 1: ', value));
+
+
+setTimeout(() => {
+  console.log('XOX Subscription 2 starts');
+  observable$.subscribe(value => console.log('Subscription 2: ', value));
+}, 1000);
+// end -- the codes of the third section
