@@ -21,11 +21,21 @@ import { Observable } from "rxjs";
  *                  The next notification allow us to emit values.
  *                  We may want to consume the data emitted by an Observable.
  *                  We may want to provide some logic that we'd like to run for each emitted value.
+ *                  In an Observable Execution, zero to infinite Next notifications may be delivered.
+ *                  If either an Error or Complete notification is delivered, then nothing else can be delivered afterwards.
+ *                  next*(error|complete)?
  *      2. error
  *                  We may want to provide some error handling logic if something goes wrong.
  *      3. complete
  */
 
+/*
+There are three types of values an Observable Execution can deliver:
+
+    "Next" notification: sends a value such as a Number, a String, an Object, etc.
+    "Error" notification: sends a JavaScript Error or exception.
+    "Complete" notification: does not send a value.
+*/
 
 /**
  * A new Observable can be created by using the 'new Observable' constructor.
@@ -34,6 +44,8 @@ const demo1$ = new Observable<string>();
 
 /**
  * The Observable constructor takes one argument: the subscribe function.
+ * The 'new Observable' constructor accepts a function which is run when we subscribe to this Observable.
+ * Let's try this and implement a function which will be used as this Observable's logic when we subscribe.
  * Most commonly, observables are created using creation functions, like of, from, interval, etc.
  */
 const demo2$ = new Observable<string>(function subscribe(subscriber) { });
@@ -58,4 +70,12 @@ const observable$ = new Observable<string>(subscriber => {
 /**
  * We need to somehow run the callback inside of this Observable and pass our Observer to it to make it work.
  * How can we make this Observable execute this callback?
+ */
+
+/**
+ Anatomy of an Observable
+        1. Creating Observables
+        2. Subscribing to Observables
+        3. Executing Observables
+        4. Disposing Observable Executions
  */
