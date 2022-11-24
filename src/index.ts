@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import {
   name$,
@@ -6,29 +6,40 @@ import {
   storeDataOnServerError
 } from './external';
 
-const helloButton = document.querySelector('button#hello');
+const heroes$ = of('Kaisa', 'Garen', 'Darius', 'Sett');
 
-const helloClick$ = new Observable<MouseEvent>(function subscribe(subscriber) {
-  helloButton.addEventListener('click', (event: MouseEvent) => {
-    subscriber.next(event);
-  })
+// We can see that all values were emitted immediately after subscribing as we've expected.
+// We also expect this Observable to emit a complete notification directly after emitting the last value.
+heroes$.subscribe({
+  next(value) {
+      console.log(value);   
+  },
+  complete() {
+      console.log('bak bakalım');
+  },
 });
 
-// helloClick$.subscribe(event => console.log(event));
+function ourOwnOf(...args: string[]): Observable<string> {
+  // let's return and a new Observable.
+  return new Observable<string>(subscriber => {
+      // We'll simply iterate over the arguments using the 'for' loop.
+      for (let i = 0; i < args.length; i++)
+      {
+          subscriber.next(args[i]);
+      }
 
-// We can see that each time I click the button, the same exact click is passed to all Subscriptions.
-// We can say that it's multicasted.
-// So a Hot Observable is the one which has the actual source of the emissions placed outside of it.
-helloClick$.subscribe(event => console.log('Sub 1:', event.type, event.x, event.y));
-helloClick$.subscribe(event => console.log('Sub 2:', event.type, event.x, event.y));
+      subscriber.complete();
+  });
+}
 
-// Before we continue, let's try one more thing and let's move the third Subscription further in time.
-// We'll add 'setTimeout' and we'll provide a five second delay.
+const heroes2$ = ourOwnOf('2 starts','Kaisa', 'Garen', 'Darius', 'Sett');
 
-// ilk 5 saniyeden öncesi bu abi de yok
-setTimeout(() => {
-  console.log('Subscription 3 starts');
-  helloClick$.subscribe(
-    event => console.log('Sub 3:', event.type, event.x, event.y)
-  );
-}, 5000);
+heroes2$.subscribe({
+  next(value) {
+      console.log(value);   
+  },
+  complete() {
+      console.log('bak bakalım');
+  },
+});
+ 
