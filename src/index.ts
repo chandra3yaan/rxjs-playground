@@ -1,4 +1,4 @@
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import {
   name$,
@@ -6,40 +6,51 @@ import {
   storeDataOnServerError
 } from './external';
 
-const heroes$ = of('Kaisa', 'Garen', 'Darius', 'Sett');
+// array section
+const heroes$ = from(['Kaisa', 'Garen', 'Darius']);
 
-// We can see that all values were emitted immediately after subscribing as we've expected.
-// We also expect this Observable to emit a complete notification directly after emitting the last value.
 heroes$.subscribe({
   next(value) {
-      console.log(value);   
+    console.log(value);
   },
   complete() {
-      console.log('bak bakalım');
+    console.log('bak bakalım');
   },
 });
 
-function ourOwnOf(...args: string[]): Observable<string> {
-  // let's return and a new Observable.
-  return new Observable<string>(subscriber => {
-      // We'll simply iterate over the arguments using the 'for' loop.
-      for (let i = 0; i < args.length; i++)
-      {
-          subscriber.next(args[i]);
-      }
 
-      subscriber.complete();
-  });
-}
+// promise section
+const first = new Promise((resolve, reject) => {
+  resolve('Resolved!');
+  //reject('Rejected!');
+});
 
-const heroes2$ = ourOwnOf('2 starts','Kaisa', 'Garen', 'Darius', 'Sett');
+const observableFromPromise$ = from(first);
+const observableFromPromise2$ = of(first);
 
-heroes2$.subscribe({
+// for from
+observableFromPromise$.subscribe({
   next(value) {
-      console.log(value);   
+      console.log('from: ', value);
+  },
+  error(err) {
+      console.log('Error: ', err);
   },
   complete() {
-      console.log('bak bakalım');
+      console.log('from → bak bakalım');
   },
 });
- 
+
+// for of
+// promise'ın kendisini ham olarak yayınlar
+observableFromPromise2$.subscribe({
+  next(value) {
+      console.log('of: ', value);
+  },
+  error(err) {
+      console.log('Error: ', err);
+  },
+  complete() {
+      console.log('of → bak bakalım');
+  },
+});
