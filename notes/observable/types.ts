@@ -40,6 +40,69 @@
  * A value with the response is emitted.
  * So as you can see, a Cold Observable can also emit different values for each Subscription.
  * This Observable produced a separate, independent HTTP call for each Subscription.
+ */
+
+/**
+ * Hot Observables
  * 
+ * In the case of Cold Observables, each Subscription had the values produced independently from other subscriptions.
+ * With Hot Observables, all Subscriptions share the same source.
+ * This is done by writing the Observable's logic in a way that it just connects to some existing source.
  * 
+ * For example, we all know the DOM events, which are emitted when we click on a button, resize the window and so on.
+ */
+
+
+/**
+ * There are two types of observables: hot and cold.
+ * The main difference is that a cold observable creates a data producer for each subscriber,
+ * ... whereas a hot observable creates a data producer first,
+ *      ... and each subscriber gets the data from one producer, starting from the moment of subscription.
+
+
+        * The first line represents the passing time and the DOM events each time the user clicks on a button.
+        * So it doesn't represent any Observable or Subscription.
+        * We'll just show on it when the user clicks on a button and when a regular DOM event is dispatched.
+
+                ________________________________________________
+
+
+        * At this point, if the user would click on a button, nothing would happen, as nothing is listening to this event.
+
+                __A________B______C______________________________
+                ...................................................................subscribe1
+
+        * Let's now say we have an Observable, which when we subscribe, connects to this DOM event and each time a click event comes, its value is emitted as a next notification.
+
+                  A     ___B____C______________________________________
+                        ...................................................................subscribe2
+                  A        B    C______________________________________
+                                ...........................................................subscribe3           
+
+        * So now let's subscribe to this Observable. And, as soon as we subscribe to this Observable, it will connect to the DOM event.
+        * Now, this is the most important part of the Observable being Hot.
+        * If we would create another Subscription to this Observable, this Subscription will also run this Observable's logic, making another connection to the same DOM event.
+        * This means that if we would click on our button once more, all Subscriptions will be notified about this fact at the same time.
+        * And in our case, the actual source of emissions is placed outside of the Observable's logic.
+ */
+
+/**
+ * Let’s compare watching a movie on Netflix to going into a movie theater.
+ * Think of yourself as an observer. Anyone who decides to watch Mission: Impossible on Netflix will get the entire movie, regardless of when they hit the play button.
+ * Netflix creates a new producer to stream a movie just for you. This is a cold observable.
+ * 
+ * Cold observables are ones that start pushing only when you subscribe, and they start over if you subscribe again.
+ */
+
+/**
+ * If you go to a movie theater and the showtime is 4 p.m., the producer is created at 4 p.m., and the streaming begins.
+ * If some people (subscribers) are late to the show, they miss the beginning of the movie and can only watch it starting from the moment of arrival.
+ * This is a hot observable.
+ */
+
+
+/**
+      cold => produces the data inside => new subscriber  ...new data
+	        .Each time we subscribe, the Observable emits the same set of values instantly and then completes
+      hot  => from common source 	 => all subscribers ...common data
  */
