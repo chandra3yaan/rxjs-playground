@@ -1,10 +1,5 @@
-import { Observable, of, from, fromEvent, timer, interval, throwError, forkJoin } from 'rxjs';
+import { forkJoin } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
 
 // ☼ for example  →  Mike is from New Delhi and likes to eat pasta.
 // ☼ for example  →  ___ is from ____ and likes to eat ______.
@@ -18,6 +13,7 @@ const randomFood$ = ajax('https://random-data-api.com/api/food/random_food');
 // randomName$.subscribe((ajaxResponse) => console.log(ajaxResponse));
 // randomNation$.subscribe((ajaxResponse) => console.log(ajaxResponse));
 // randomFood$.subscribe((ajaxResponse) => console.log(ajaxResponse));
+
 
 randomName$.subscribe({
     next(ajaxResponse: AjaxResponse<any>) {
@@ -37,6 +33,7 @@ randomFood$.subscribe({
     },
 });
 
+
 /**
  *  Now, let's go back to our main goal.
  *  We'd like to somehow take all of these values and put them together into one sentence.
@@ -54,39 +51,9 @@ randomFood$.subscribe({
 // So let's pass all of our sources...
 const forkJoin$ = forkJoin([randomName$, randomNation$, randomFood$]);
 
-forkJoin$.subscribe(ajaxResponse => { console.log(ajaxResponse) });
-
+// Applying that to our example, it will make three HTTP calls, emit an array with all the responses in
 forkJoin$.subscribe({
     next([nameAjax, nationAjax, foodAjax]: AjaxResponse<any>[]) {
         console.log(`♫${nameAjax.response.first_name}♫ is from ♫${nationAjax.response.capital}♫ and likes to eat ♫${foodAjax.response.dish}♫.`);
     },
-});
-
-
-// forkJoin - Error Scenario 
-const a$ = new Observable(subscriber => {
-
-    subscriber.next('A');
-    return () => {
-        console.log('A teardown');
-    };
-
-});
-
-const b$ = new Observable(subscriber => {
-
-    setTimeout(() => {
-        subscriber.error('Failure!');
-    }, 3000);
-
-    return () => {
-        console.log('B teardown');
-    };
-    
-});
-
-
-forkJoin([a$, b$]).subscribe({
-    next: value => console.log(value),
-    error: err => console.log('Error:', err)
 });
