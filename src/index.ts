@@ -1,4 +1,4 @@
-import { Observable, of, from, fromEvent, timer, interval } from 'rxjs';
+import { Observable, of, from, fromEvent, timer, interval, throwError } from 'rxjs';
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import {
     name$,
@@ -6,37 +6,20 @@ import {
     storeDataOnServerError
 } from './external';
 
-console.log('App started');
+let errorCount = 0;
 
-const interval1$ = interval(2000);
-
-const subscription1 = interval1$.subscribe({
-    next(value) {
-        console.log(value);
-    },
-    error(err) {
-        console.log(err);
-    },
-    complete() {
-        console.log('completed');
-    },
+const errorWithTimestamp$ = throwError(() => {
+    const error: any = new Error(`This is error number ${++errorCount}`);
+    error.timestamp = Date.now();
+    return error;
 });
 
-setTimeout(() => {
-    const subscription2 = interval1$.subscribe({
-        next(value) {
-            console.log('second: ', value);
-        },
-        error(err) {
-            console.log(err);
-        },
-        complete() {
-            console.log('completed');
-        },
-    });
-}, 4000);
+errorWithTimestamp$.subscribe({
+    error: err => console.log(err.timestamp, err.message)
+});
 
-setTimeout(() => {
-    console.log('subscription1 ends');
-    subscription1.unsubscribe();
-}, 8000);
+errorWithTimestamp$.subscribe({
+    error: err => console.log(err.timestamp, err.message)
+});
+
+// Logs the timestamp and a new error message for each subscription

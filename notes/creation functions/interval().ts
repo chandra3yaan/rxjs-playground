@@ -10,3 +10,7 @@
  *  we will receive the first value after one second.
  *  Then, the next after one more second... and so on.
  */
+
+/**
+ * We have to unsubscribe from this.
+ */
