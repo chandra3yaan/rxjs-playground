@@ -34,3 +34,7 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/forkJoin3.png" alt="forkJoin3">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/forkJoin4.png" alt="forkJoin4">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/combineLatest1.png" alt="combineLatest1">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/combineLatest2.png" alt="combineLatest2">
