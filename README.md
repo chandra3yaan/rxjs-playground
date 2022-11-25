@@ -29,3 +29,9 @@ alt="from2">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/fromEvent.png"
 alt="fromEvent">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/timer.png"
+alt="timer">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/interval.png"
+alt="interval">

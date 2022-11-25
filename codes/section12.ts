@@ -1,15 +1,19 @@
-import { Observable, of, from, fromEvent, timer, interval } from 'rxjs';
-import { ajax, AjaxResponse } from "rxjs/ajax";
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
+// let's create our Observable by using the 'timer' creation function. 
+
+import { Observable, interval } from "rxjs";
 
 console.log('App started');
 
 const interval1$ = interval(2000);
-
+/*
+const timer2$ = new Observable<number>(suscriber => {
+    const timeoutId = setTimeout(() => {
+        suscriber.next(0);
+        suscriber.complete();
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+});
+*/
 const subscription1 = interval1$.subscribe({
     next(value) {
         console.log(value);
@@ -25,7 +29,7 @@ const subscription1 = interval1$.subscribe({
 setTimeout(() => {
     const subscription2 = interval1$.subscribe({
         next(value) {
-            console.log('second: ', value);
+            console.log(value);
         },
         error(err) {
             console.log(err);
@@ -37,6 +41,5 @@ setTimeout(() => {
 }, 4000);
 
 setTimeout(() => {
-    console.log('subscription1 ends');
     subscription1.unsubscribe();
 }, 8000);
