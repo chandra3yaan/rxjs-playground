@@ -1,10 +1,6 @@
-import { Observable, of, from, fromEvent, timer } from 'rxjs';
-import { ajax, AjaxResponse } from "rxjs/ajax";
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
+// let's create our Observable by using the 'timer' creation function. 
+
+import { Observable, timer } from "rxjs";
 
 console.log('App started');
 
