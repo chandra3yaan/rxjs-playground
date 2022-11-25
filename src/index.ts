@@ -1,4 +1,4 @@
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, fromEvent } from 'rxjs';
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import {
   name$,
@@ -6,51 +6,46 @@ import {
   storeDataOnServerError
 } from './external';
 
-// array section
-const heroes$ = from(['Kaisa', 'Garen', 'Darius']);
+// button
+const triggerButton = document.querySelector('button#trigger');
 
-heroes$.subscribe({
-  next(value) {
-    console.log(value);
-  },
-  complete() {
-    console.log('bak bakalım');
-  },
+// fromEvent
+const fromEvent$: Observable<MouseEvent> = fromEvent<MouseEvent>(triggerButton, 'click');
+
+// addEventListener
+const addEventListener$ = new Observable<MouseEvent>(subscriber => {
+  triggerButton.addEventListener('click', (event: MouseEvent) => {
+    subscriber.next(event);
+  });
 });
 
+// fromEvent$.subscribe(event => console.log(event)); // PointerEvent 
+fromEvent$.subscribe(event => console.log('fromEvent: ', event.type, event.x, event.y));
+fromEvent$.subscribe(event => console.log('fromEvent: ', event.type, event.x, event.y));
+// addEventListener$.subscribe(event => console.log(event)); // PointerEvent 
+addEventListener$.subscribe(event => console.log('addEventListener: ', event.type, event.x, event.y));
+addEventListener$.subscribe(event => console.log('addEventListener: ', event.type, event.x, event.y));
 
-// promise section
-const first = new Promise((resolve, reject) => {
-  resolve('Resolved!');
-  //reject('Rejected!');
+
+// removeEventListener önemi
+const triggerClick$ = new Observable<MouseEvent>(subscriber => {
+
+  const clickHandlerFn = (event: MouseEvent) => {
+    console.log('Event callback executed');
+    subscriber.next(event);
+  };
+
+  triggerButton.addEventListener('click', clickHandlerFn);
+  /*
+    return () => {
+      triggerButton.removeEventListener('click', clickHandlerFn);
+    };
+  */
 });
 
-const observableFromPromise$ = from(first);
-const observableFromPromise2$ = of(first);
+const subscription2 = triggerClick$.subscribe(event => console.log(event));
 
-// for from
-observableFromPromise$.subscribe({
-  next(value) {
-      console.log('from: ', value);
-  },
-  error(err) {
-      console.log('Error: ', err);
-  },
-  complete() {
-      console.log('from → bak bakalım');
-  },
-});
-
-// for of
-// promise'ın kendisini ham olarak yayınlar
-observableFromPromise2$.subscribe({
-  next(value) {
-      console.log('of: ', value);
-  },
-  error(err) {
-      console.log('Error: ', err);
-  },
-  complete() {
-      console.log('of → bak bakalım');
-  },
-});
+setTimeout(() => {
+  console.log('Unsubscribe');
+  subscription2.unsubscribe();
+}, 5000);

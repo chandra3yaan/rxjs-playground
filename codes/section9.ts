@@ -5,10 +5,10 @@
  *      2. And second, we'll convert a Promise into an Observable.
  */
 
-import { from} from "rxjs";
+import { Observable, from } from "rxjs";
 
 // 1
-const heroes$ = from(['Kaisa', 'Garen', 'Darius']);
+const heroes$: Observable<string> = from(['Kaisa', 'Garen', 'Darius']);
 
 heroes$.subscribe({
     next(value) {

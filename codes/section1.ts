@@ -2,7 +2,7 @@ import {
     name$,
     storeDataOnServer,
     storeDataOnServerError
-} from '../../src/external';
+} from '../src/external';
 
 /**
  * Observables are like functions, which generate some values once we subscribe to them.

@@ -11,8 +11,20 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/SubscriptionLifecycle.png"
 alt="lifecycle">
 <br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/coldHttpRequest.png"
+alt="coldHttpRequest">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/hotObservable.png"
+alt="hotObservable">
+<br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/of.png"
 alt="of">
 <br/>
-<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/from.png"
-alt="from">
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/from1.png"
+alt="from1">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/from2.png"
+alt="from2">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/fromEvent.png"
+alt="fromEvent">
