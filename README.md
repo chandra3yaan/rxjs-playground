@@ -46,3 +46,5 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/filter3.png" alt="filter3">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/map.png" alt="map">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/tap.png" alt="tap">
