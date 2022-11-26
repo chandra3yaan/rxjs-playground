@@ -52,3 +52,9 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/debounceTime1.png" alt="debounceTime1">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/debounceTime2.png" alt="debounceTime2">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/catchError1.png" alt="catchError1">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/catchError2.png" alt="catchError2">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/catchError3.png" alt="catchError3">

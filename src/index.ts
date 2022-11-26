@@ -2,7 +2,8 @@ import {
     Observable, of, from,
     fromEvent, timer, interval,
     throwError, forkJoin, combineLatest,
-    filter, map, tap, debounceTime
+    filter, map, tap, debounceTime,
+    catchError, EMPTY
 } from 'rxjs';
 
 import {
@@ -16,27 +17,32 @@ import {
 } from './external';
 
 
-/**
- * We'll make an Observable which will emit the value of this slider each time the user moves it.
- * We'll also use the 'debounceTime' operator to emit the value after the users stop sliding and the value settles for a short time.
- * This is useful if the logic which we would like to run for the updated value would require a lot of calculations and might cause slowdowns.
- * 
- * Another case is when we would like to store the setting of this slider on the server.
- * Without debouncing every minor movement of the slider would trigger a new HTTP request,
- * so in the short while, dozens of new HTTP requests might be generated.
- */
+const failingHttpRequest$ = new Observable(subscriber => {
+    setTimeout(() => {
+        subscriber.error(new Error('Timeout'));
+    }, 3000);
+});
 
-/**
- * console.log(sliderInput);
- *      → input id="slider" class="form-control" type="range" min="0" max="100">
- */
+console.log('App started');
 
-const sliderInput: HTMLInputElement = document.querySelector('input#slider');
-
-const slider$ = fromEvent(sliderInput, 'input')
+failingHttpRequest$
     .pipe(
-        debounceTime(2000),
-        map(event => (event.target as HTMLInputElement)['value'])
-    );
+        catchError(error => of('fallback value')),
+    )
+    .subscribe(value => console.log(value));
 
-slider$.subscribe(value => console.log(value));
+
+// EMPTY    → So once you subscribe to it, it doesn't emit any values.
+//          → It will immediately complete instead.
+//          → This is useful if you would like to hide the error notification from your Observer,
+//          → but don't want to provide any fallback values.
+
+
+failingHttpRequest$
+    .pipe(
+        catchError(error => EMPTY)
+    )
+    .subscribe({
+        next: value => console.log(value),
+        complete: () => console.log('Completed')
+    });
