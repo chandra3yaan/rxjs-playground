@@ -48,3 +48,7 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/map.png" alt="map">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/tap.png" alt="tap">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/debounceTime1.png" alt="debounceTime1">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/debounceTime2.png" alt="debounceTime2">

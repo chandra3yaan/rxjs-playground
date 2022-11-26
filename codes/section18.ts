@@ -1,21 +1,3 @@
-import {
-    Observable, of, from,
-    fromEvent, timer, interval,
-    throwError, forkJoin, combineLatest,
-    filter, map, tap, debounceTime
-} from 'rxjs';
-
-import {
-    ajax, AjaxResponse
-} from "rxjs/ajax";
-
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
-
-
 /**
  * We'll make an Observable which will emit the value of this slider each time the user moves it.
  * We'll also use the 'debounceTime' operator to emit the value after the users stop sliding and the value settles for a short time.
@@ -25,6 +7,8 @@ import {
  * Without debouncing every minor movement of the slider would trigger a new HTTP request,
  * so in the short while, dozens of new HTTP requests might be generated.
  */
+
+import { fromEvent, debounceTime, map } from "rxjs";
 
 /**
  * console.log(sliderInput);
