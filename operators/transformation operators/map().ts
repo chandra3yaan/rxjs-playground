@@ -1,20 +1,25 @@
-import {
-    Observable, of, from,
-    fromEvent, timer, interval,
-    throwError, forkJoin, combineLatest,
-    filter, map
-} from 'rxjs';
+/**
+ * For each emitted value, the 'map' operator can provide a new value.
+ * The new value can be calculated based on the value emitted by the source or just a new unrelated value.
+ * As it was with the 'filter' operator, the 'map' operator also isn't interested in the error and complete notifications,
+ *  ... which are also reemitted to the output in an unchanged form.
+ */
 
-import {
-    ajax, AjaxResponse
-} from "rxjs/ajax";
+import { map, forkJoin } from "rxjs";
+import { ajax, AjaxResponse } from "rxjs/ajax";
 
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
-
+/**
+ * Let's now see some scenario in a diagram.
+ * Our source will emit a few next notifications with some numeric values.
+ * We'll use the 'map' operator to take each of these values and multiply it by 2, before reemitting it further.
+ * 
+ * map(x => x.2)
+ * 3    → 6
+ * 4    → 8
+ * 1    → 2
+ * 2    → 4
+ * 9    → 18
+ */
 
 // const randomName$ = ajax('https://random-data-api.com/api/name/random_name');
 

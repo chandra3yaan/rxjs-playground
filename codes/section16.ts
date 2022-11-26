@@ -1,20 +1,5 @@
-import {
-    Observable, of, from,
-    fromEvent, timer, interval,
-    throwError, forkJoin, combineLatest,
-    filter, map
-} from 'rxjs';
-
-import {
-    ajax, AjaxResponse
-} from "rxjs/ajax";
-
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
-
+import { map, forkJoin } from "rxjs";
+import { ajax, AjaxResponse } from "rxjs/ajax";
 
 // const randomName$ = ajax('https://random-data-api.com/api/name/random_name');
 
