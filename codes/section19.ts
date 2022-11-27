@@ -1,14 +1,6 @@
-import {
-    Observable, of, from,
-    fromEvent, timer, interval,
-    throwError, forkJoin, combineLatest,
-    filter, map, tap, debounceTime,
-    catchError, EMPTY, concatMap
-} from 'rxjs';
-
-import { ajax, AjaxResponse } from "rxjs/ajax";
-import { name$, storeDataOnServer, storeDataOnServerError } from './external';
-
+import { fromEvent } from "rxjs";
+import { ajax } from "rxjs/ajax";
+import { concatMap, map } from "rxjs/operators";
 
 const endpointInput: HTMLInputElement = document.querySelector('input#endpoint');
 const fetchButton = document.querySelector('button#fetch');
