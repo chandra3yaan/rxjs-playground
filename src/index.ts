@@ -3,46 +3,25 @@ import {
     fromEvent, timer, interval,
     throwError, forkJoin, combineLatest,
     filter, map, tap, debounceTime,
-    catchError, EMPTY
+    catchError, EMPTY, concatMap
 } from 'rxjs';
 
-import {
-    ajax, AjaxResponse
-} from "rxjs/ajax";
-
-import {
-    name$,
-    storeDataOnServer,
-    storeDataOnServerError
-} from './external';
+import { ajax, AjaxResponse } from "rxjs/ajax";
+import { name$, storeDataOnServer, storeDataOnServerError } from './external';
 
 
-const failingHttpRequest$ = new Observable(subscriber => {
-    setTimeout(() => {
-        subscriber.error(new Error('Timeout'));
-    }, 3000);
+const source$ = new Observable(subscriber => {
+    setTimeout(() => subscriber.next('A'), 2000);
+    setTimeout(() => subscriber.next('B'), 5000);
 });
 
-console.log('App started');
+console.log('App has started');
 
-failingHttpRequest$
+// source$.subscribe(value => console.log(value));
+source$
     .pipe(
-        catchError(error => of('fallback value')),
+        concatMap(value => of(1, 2))
     )
-    .subscribe(value => console.log(value));
-
-
-// EMPTY    → So once you subscribe to it, it doesn't emit any values.
-//          → It will immediately complete instead.
-//          → This is useful if you would like to hide the error notification from your Observer,
-//          → but don't want to provide any fallback values.
-
-
-failingHttpRequest$
-    .pipe(
-        catchError(error => EMPTY)
-    )
-    .subscribe({
-        next: value => console.log(value),
-        complete: () => console.log('Completed')
-    });
+    .subscribe(
+        value => console.log(value)
+    );
