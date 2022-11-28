@@ -27,6 +27,8 @@ fromEvent(fetchButton, 'click')
         // Let's now use it and apply the 'concatMap' operator to turn this value into a new HTTP request.
         concatMap(value => ajax(`https://random-data-api.com/api/${value}/random_${value}`))
     )
-    .subscribe(
-        value => console.log(value)
-    );
+    .subscribe({
+        next(value) { console.log(value) },
+        error(err) { console.log('Error: ', err) },
+        complete() { console.log('completed') },
+    });
