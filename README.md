@@ -64,3 +64,5 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/concatMap2.png" alt="concatMap2">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/concatMap3.png" alt="concatMap3">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/switchMap.png" alt="switchMap">
