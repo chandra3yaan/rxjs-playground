@@ -70,3 +70,5 @@
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/mergeMap1.png" alt="mergeMap1">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/mergeMap2.png" alt="mergeMap2">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/multicasting.png" alt="multicasting">
