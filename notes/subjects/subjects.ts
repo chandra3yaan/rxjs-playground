@@ -29,3 +29,13 @@
  * 
  *          Match
  */
+
+/**
+ *  First, the Subject is an Observable.
+ *      → You can subscribe to Subject and use it just as you would a regular Observable.
+ *      → You can mix the Subject together with other Observables by, for example, using 'combineLatest' or flattening operators.
+ * 
+ *  Secondly, as the Subject itself is a source of emissions, it behaves like a Hot Observable.
+ *      → This means that each new Subscription will connect to the same source of emissions, which is our Subject.
+ *      → So, every Subscription to the same Subject will receive the same notifications at the same time.
+ */
