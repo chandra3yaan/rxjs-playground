@@ -1,5 +1,5 @@
 # RxJS playground
-
+[Jurek Wozniak](https://www.linkedin.com/in/jurek-wozniak-77a4b4114/)'ın RxJS 7 and Observables: Introduction Udemy kursunu takip ederek RxJS öğrenme serüvenim...
 1. Run `npm install`. This will install all needed dependencies.
 2. Run `npm start`. This will run the dev server.
 3. Open your browser and navigate to the provided URL (default: `http://localhost:8080/`).
@@ -7,6 +7,9 @@
 5. Keep modifying the `src/index.html` and `src/index.ts` files to adjust the code you want to run.
 6. **Saving these files will automatically reload the page.**
 7. Enjoy!
+
+# Reactive Extensions Library for JavaScript
+> * RxJS kütüphanesi, olay ve veri kaynaklarına abone olabilen bu kaynakları Observable nesnelerine dönüştürebilen bunlar üzerinde operatörler vasıtasıyla dönüşümler/etkiler gerçekleştiriebilen ve nihayetinde ortaya çıkan sonucu tüketebilmemizi sağlayan JavaScript ile yazılmış **bir reactive programlama kütüphanesidir.**
 
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/SubscriptionLifecycle.png" alt="lifecycle">
