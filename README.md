@@ -11,6 +11,8 @@
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/SubscriptionLifecycle.png" alt="lifecycle">
 <br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/rxjs.png" alt="rxjs">
+<br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/coldHttpRequest.png" alt="coldHttpRequest">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/hotObservable.png" alt="hotObservable">
@@ -73,4 +75,8 @@
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/multicasting.png" alt="multicasting">
 <br/>
-<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/subject.png" alt="subject">
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/subject1.png" alt="subject1">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/subject2.png" alt="subject2">
+<br/>
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/behaviorSubject.png" alt="behaviorSubject">

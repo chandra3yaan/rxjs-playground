@@ -80,6 +80,47 @@
   </div>
   <hr>
   <!---->
+  <nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand">Logged in: <span id="logged-in"></span></span>
+  </nav>
+
+  <div class="container mt-3">
+    <p> 
+      // As you can see, I've prepared some elements.
+      <br>
+      // We have a navigation bar above in which we'll display our login state - true or false, depending on the current
+      state.
+      <br>
+      // And next, we have the 'Login' and 'Logout' buttons.
+      <br>
+      // And as you might have predicted, the 'Login' button will change the 'logged in' state to true, and the other
+      will set it to false.
+      <br>
+      // Also, we'll make a single button appear depending on the state.
+      <br>
+      // So if we are logged in the 'Logout' button will be presented and vice versa.
+      <br>
+      // Finally, we'll make this 'Print state' button, print the current login state to the console.
+      <br>
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="my-4 form-inline">
+      <button id="login" class="btn btn-primary mr-1">
+        Login
+      </button>
+      <button id="logout" class="btn btn-primary">
+        Logout
+      </button>
+    </div>
+
+    <button id="print-state" class="btn btn-secondary">
+      Print state
+    </button>
+  </div>
+  <hr>
+  <!---->
 </body>
 
 </html>

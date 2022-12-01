@@ -55,7 +55,7 @@ const demo1$ = new Observable<string>();
  * Let's try this and implement a function which will be used as this Observable's logic when we subscribe.
  * Most commonly, observables are created using creation functions, like of, from, interval, etc.
  */
-const demo2$ = new Observable<string>(function subscribe(subscriber) { });
+const demo2$ = new Observable<string>(function subscribe(subscriber) {});
 
 /**
  * The Observer just describes the reaction to each emitted value.

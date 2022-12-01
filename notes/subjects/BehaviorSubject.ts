@@ -1,47 +1,11 @@
-import {
-    Observable, of, from,
-    fromEvent, timer, interval,
-    throwError, forkJoin, combineLatest,
-    filter, map, tap, debounceTime,
-    catchError, EMPTY, concatMap,
-    Subject, BehaviorSubject, withLatestFrom
-} from 'rxjs';
-
-import { ajax, AjaxResponse } from "rxjs/ajax";
-import { name$, storeDataOnServer, storeDataOnServerError } from './external';
-
-
-const emitButton = document.querySelector('button#emit');
-const inputElement: HTMLInputElement = document.querySelector('#value-input');
-const subscribeButton = document.querySelector('button#subscribe');
-
 /**
- * In this coding section, we'll use a Subject to see how it can be used to multicast values to all active Subscriptions.
+ * One of the variants of Subjects is the BehaviorSubject, which has a notion of "the current value".
+ * It stores the latest value emitted to its consumers, and whenever a new Observer subscribes,
+ * it will immediately receive the "current value" from the BehaviorSubject.
  */
 
-// I'll create a const 'value$' and use the constructor 'new Subject' which we need to import from 'rxjs'.
-// Let's also provide the type of the emitted values which in our case will be 'string'.
-// Now, we can add new Observers by creating new Subscriptions to it.
-const value$ = new Subject<string>();
+import { fromEvent, Subject, BehaviorSubject, withLatestFrom } from "rxjs";
 
-
-fromEvent(emitButton, 'click')
-    .pipe(
-        map(() => inputElement.value)
-    )
-    .subscribe({
-        next(value) { value$.next(value) },
-    });
-    // The main reason I presented this possibility was to indicate the compatibility of the Subject with the Observer object.
-    //.subscribe(value$);
-
-
-fromEvent(subscribeButton, 'click').subscribe({
-    next() {
-        console.log('New Subscription');
-        value$.subscribe(value => console.log(value));
-    },
-});
 
 // As you can see, I've prepared some elements.
 // We have a navigation bar above in which we'll display our login state - true or false, depending on the current state.
@@ -103,13 +67,13 @@ isLoggedIn$.subscribe(isLoggedIn => {
 /**
  * The last thing we wanted to achieve in this coding section is to print the state to the console when we click on this 'Print state' button.
  */
- fromEvent(printStateButton, 'click')
- .pipe(
-     // So what it does is whenever a click event is emitted, the 'withLatestFrom' operator will take the latest value from the BehaviorSubject
-     // ... and create an array with that value added.
-     // By the way, using 'withLatestFrom' is a very common way of selecting various pieces of the state when using NgRx in Angular projects.
-     withLatestFrom(isLoggedIn$)
- )
- .subscribe(
-     ([event, isLoggedIn]) => console.log('User is logged in:', isLoggedIn)
- );
+fromEvent(printStateButton, 'click')
+    .pipe(
+        // So what it does is whenever a click event is emitted, the 'withLatestFrom' operator will take the latest value from the BehaviorSubject
+        // ... and create an array with that value added.
+        // By the way, using 'withLatestFrom' is a very common way of selecting various pieces of the state when using NgRx in Angular projects.
+        withLatestFrom(isLoggedIn$)
+    )
+    .subscribe(
+        ([event, isLoggedIn]) => console.log('User is logged in:', isLoggedIn)
+    );
