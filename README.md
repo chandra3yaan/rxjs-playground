@@ -11,7 +11,7 @@
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/SubscriptionLifecycle.png" alt="lifecycle">
 <br/>
-<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/rxjs.png" alt="rxjs">
+<img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/rxjs.jpg" alt="rxjs">
 <br/>
 <img src="https://github.com/enesozmus/rxjs-playground/blob/master/assets/coldHttpRequest.png" alt="coldHttpRequest">
 <br/>
